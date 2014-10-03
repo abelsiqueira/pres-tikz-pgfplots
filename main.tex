@@ -1,0 +1,65 @@
+\documentclass[12pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+\usepackage{graphicx}
+\usepackage{color}
+
+\colorlet{mybasecolor}[rgb]{blue!60!black}
+\usepackage{slidesdef}
+
+\usepackage{user}
+
+\begin{document}
+
+\myframe{
+  \begin{beamercolorbox}[center, rounded=true, shadow=true]{mainbox}
+    \bf \LARGE \titulo
+  \end{beamercolorbox}
+  \hfill
+  \begin{beamercolorbox}[center, wd=0.8\textwidth, rounded=true,
+      shadow=true]{secbox}
+    \bf \large \evento
+  \end{beamercolorbox}
+  \hfill{}
+
+  \linespread{1.0}
+  \begin{center}
+    \textbf{\autor}
+    \vspace{-4pt}
+    {\scriptsize \\ \instautor}
+    \ifdefined\colabum
+      \vspace{10pt}
+      \textbf{\\ \colabum}
+      \vspace{-4pt}
+      {\scriptsize \\ \instcolabum}
+    \fi
+    \ifdefined\colabdois
+      \vspace{10pt}
+      \textbf{\\ \colabdois}
+      \vspace{-4pt}
+      {\scriptsize \\ \instcolabdois}
+    \fi
+    \ifdefined\colabtres
+      \vspace{10pt}
+      \textbf{\\ \colabtres}
+      \vspace{-4pt}
+      {\scriptsize \\ \instcolabtres}
+    \fi
+    \ifdefined\colabquatro
+      \vspace{10pt}
+      \textbf{\\ \colabquatro}
+      \vspace{-4pt}
+      {\scriptsize \\ \instcolabquatro}
+    \fi
+    {\small \\ \vfill \data}
+  \end{center}
+}
+
+\include{body}
+
+\myframe{
+  \ctr{\Huge Fim}
+}
+
+\end{document}
