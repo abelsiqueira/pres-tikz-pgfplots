@@ -1,10 +1,19 @@
+\lstset{
+  basicstyle=\scriptsize\ttfamily,
+  breaklines=true,
+  breakatwhitespace=true,
+  frame=single,
+  language=TeX,
+  title=\lstname
+}
+
 \makesection{Introduction}
 
 \myframe{
   \begin{itemize}
     \item {\bf PGF} ({\bf P}ortable {\bf G}raphics {\bf F}ormat)
       é uma camada básica,
-      com comandos básicos.
+      com comandos básicos
     \item {\bf TikZ} ({\bf T}ikZ {\bf i}st {\bf k}ein {\bf Z}eichenprogramm -
       TikZ não é um programa para desenhar.)
       Uma camada {\it frontend}
@@ -272,61 +281,32 @@
 \makesection{PgfPlots}
 
 \begin{frame}[fragile]
-  \begin{verbatim}
-\usepackage{pgfplots}
-\pgfplotsset{compat=1.11}
-
-\begin{tikzpicture} % No corpo do texto
-  \begin{axis}[domain=0:1]
-    \addplot (x,x^2);
-    \addplot[mark=none] (x^2,-x);
-    \addplot[domain=-1:1,red,thick] (1-x^2,sin(deg(x)));
-  \end{axis}
-\end{tikzpicture}
-  \end{verbatim}
+  \lstinputlisting[firstline=7]{pgfplots-ex1.tex}
 \end{frame}
 
 \frame{
   \begin{center}
-    \begin{tikzpicture} % No corpo do texto
-    \begin{axis}[domain=0:1]
-      \addplot (x,x^2);
-      \addplot[mark=none] (x^2,-x);
-      \addplot[domain=-1:1,red,thick] ({1-x^2},{sin(deg(x))});
-    \end{axis}
-  \end{tikzpicture}
+    \includegraphics[height=0.95\textheight]{pgfplots-ex1.pdf}
   \end{center}
 }
 
 \begin{frame}[fragile]
-  a
+  \lstinputlisting[firstline=7]{pgfplots-ex2.tex}
 \end{frame}
 
 \frame{
   \begin{center}
-  \begin{tikzpicture}
-    \begin{axis}[domain=-1:1]
-    \addplot3+[mark=none,samples y=0,domain=0:360] ({1+sin(x)}, {cos(x/2)}, 0);
-    \addplot3[surf] (x,y,{sqrt(x^2+y^2)});
-    \addplot3[mesh] (x+3,y,{x^2+y^2});
-  \end{axis}
-  \end{tikzpicture}
+    \includegraphics[height=0.95\textheight]{pgfplots-ex2.pdf}
   \end{center}
 }
 
+\begin{frame}[fragile]
+  \lstinputlisting[firstline=7]{pgfplots-ex3.tex}
+\end{frame}
+
 \frame{
   \begin{center}
-  \begin{tikzpicture}
-    \begin{axis}[view={40}{30}]
-      \addplot3[contour gnuplot={number=20, labels=false, draw color=blue},
-        z filter/.code=\def\pgfmathresult{-5}] {sqrt(x^2+y^2)};
-      \addplot3[contour gnuplot={number=20, labels=false, draw color=blue},
-        y filter/.code=\def\pgfmathresult{20}] {sqrt(x^2+y^2)};
-      \addplot3[contour gnuplot={number=20, labels=false, draw color=blue},
-        x filter/.code=\def\pgfmathresult{-8}] {sqrt(x^2+y^2)};
-      \addplot3[contour gnuplot={number=20, labels=false}] {sqrt(x^2+y^2)};
-    \end{axis}
-  \end{tikzpicture}
+    \includegraphics[height=0.95\textheight]{pgfplots-ex3.pdf}
   \end{center}
 }
 
@@ -337,8 +317,17 @@
 
 \begin{frame}[fragile,allowframebreaks]
   \lstinputlisting[
-      language=tex,
-      basicstyle=\ttfamily,
-      firstline=20,
+      firstline=14
     ]{filtro.tex}
 \end{frame}
+
+\frame{
+  \lstinputlisting[firstline=7]{mountain.tex}
+  \lstinputlisting[lastline=3, frame=single]{dados/data.dat}
+}
+
+\frame{
+  \begin{center}
+    \includegraphics[height=0.95\textheight]{mountain.pdf}
+  \end{center}
+}

@@ -1,0 +1,15 @@
+\documentclass{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{tikz,pgfplots}
+\pgfplotsset{compat=1.11}
+
+\begin{document}
+  \begin{tikzpicture}
+    \begin{axis}[domain=0:1]
+      \addplot (x,x^2);
+      \addplot[mark=none] (x^2,-x);
+      \addplot[domain=-1:1,red,thick] ({1-x^2},{sin(deg(x))});
+    \end{axis}
+  \end{tikzpicture}
+\end{document}

@@ -1,0 +1,15 @@
+\documentclass{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{tikz,pgfplots}
+\pgfplotsset{compat=1.11}
+
+\begin{document}
+  \begin{tikzpicture}
+    \begin{axis}[domain=-1:1]
+    \addplot3+[mark=none,samples y=0,domain=0:360] ({1+sin(x)}, {cos(x/2)}, 0);
+    \addplot3[surf] (x,y,{sqrt(x^2+y^2)});
+    \addplot3[mesh] (x+3,y,{x^2+y^2});
+  \end{axis}
+  \end{tikzpicture}
+\end{document}

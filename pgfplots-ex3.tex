@@ -1,0 +1,19 @@
+\documentclass{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{tikz,pgfplots}
+\pgfplotsset{compat=1.11}
+
+\begin{document}
+  \begin{tikzpicture}
+    \begin{axis}[view={40}{30}]
+      \addplot3[contour gnuplot={number=20, labels=false, draw color=blue},
+        z filter/.code=\def\pgfmathresult{-5}] {sqrt(x^2+y^2)};
+      \addplot3[contour gnuplot={number=20, labels=false, draw color=blue},
+        y filter/.code=\def\pgfmathresult{20}] {sqrt(x^2+y^2)};
+      \addplot3[contour gnuplot={number=20, labels=false, draw color=blue},
+        x filter/.code=\def\pgfmathresult{-8}] {sqrt(x^2+y^2)};
+      \addplot3[contour gnuplot={number=20, labels=false}] {sqrt(x^2+y^2)};
+    \end{axis}
+  \end{tikzpicture}
+\end{document}
