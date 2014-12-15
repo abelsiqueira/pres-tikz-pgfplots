@@ -226,10 +226,6 @@
     \onslide<2->{\draw[pattern=dots] (0,0) rectangle (2,2);}
     \only<3->{\draw[pattern=dots] (2,2) rectangle (3,3);}
     \only<4->{\draw[pattern=dots] (3,3) rectangle (3.5,3.5);}
-    \only<5->{\draw[pattern=dots] (3.5,3.5) rectangle
-      (3.75,3.75);}
-    \only<6->{\draw[pattern=dots] (3.75,3.75) rectangle
-      (3.875,3.875);}
   \end{tikzpicture}
   \end{center}
 }
@@ -237,7 +233,7 @@
 \begin{frame}[fragile]
   \begin{verbatim}
 \draw (0,0) rectangle (4,4);
-\foreach \n in {1,...,6} {
+\foreach \n in {1,...,4} {
   \only<\n->{
     \def\a{{4-2^(3-\n)}}
     \def\b{{4-2^(2-\n)}}
@@ -252,7 +248,7 @@
   \begin{center}
     \begin{tikzpicture}
     \draw (0,0) rectangle (4,4);
-    \foreach \n in {1,...,6} {
+    \foreach \n in {1,...,4} {
       \only<\n->{
         \def\a{{4-2^(3-\n)}}
         \def\b{{4-2^(2-\n)}}
@@ -272,3 +268,77 @@
     \item Funções
   \end{itemize}
 }
+
+\makesection{PgfPlots}
+
+\begin{frame}[fragile]
+  \begin{verbatim}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.11}
+
+\begin{tikzpicture} % No corpo do texto
+  \begin{axis}[domain=0:1]
+    \addplot (x,x^2);
+    \addplot[mark=none] (x^2,-x);
+    \addplot[domain=-1:1,red,thick] (1-x^2,sin(deg(x)));
+  \end{axis}
+\end{tikzpicture}
+  \end{verbatim}
+\end{frame}
+
+\frame{
+  \begin{center}
+    \begin{tikzpicture} % No corpo do texto
+    \begin{axis}[domain=0:1]
+      \addplot (x,x^2);
+      \addplot[mark=none] (x^2,-x);
+      \addplot[domain=-1:1,red,thick] ({1-x^2},{sin(deg(x))});
+    \end{axis}
+  \end{tikzpicture}
+  \end{center}
+}
+
+\begin{frame}[fragile]
+  a
+\end{frame}
+
+\frame{
+  \begin{center}
+  \begin{tikzpicture}
+    \begin{axis}[domain=-1:1]
+    \addplot3+[mark=none,samples y=0,domain=0:360] ({1+sin(x)}, {cos(x/2)}, 0);
+    \addplot3[surf] (x,y,{sqrt(x^2+y^2)});
+    \addplot3[mesh] (x+3,y,{x^2+y^2});
+  \end{axis}
+  \end{tikzpicture}
+  \end{center}
+}
+
+\frame{
+  \begin{center}
+  \begin{tikzpicture}
+    \begin{axis}[view={40}{30}]
+      \addplot3[contour gnuplot={number=20, labels=false, draw color=blue},
+        z filter/.code=\def\pgfmathresult{-5}] {sqrt(x^2+y^2)};
+      \addplot3[contour gnuplot={number=20, labels=false, draw color=blue},
+        y filter/.code=\def\pgfmathresult{20}] {sqrt(x^2+y^2)};
+      \addplot3[contour gnuplot={number=20, labels=false, draw color=blue},
+        x filter/.code=\def\pgfmathresult{-8}] {sqrt(x^2+y^2)};
+      \addplot3[contour gnuplot={number=20, labels=false}] {sqrt(x^2+y^2)};
+    \end{axis}
+  \end{tikzpicture}
+  \end{center}
+}
+
+\frame{
+  \includegraphics[width=0.49\textwidth]{filtro-fh.pdf}
+  \includegraphics[width=0.49\textwidth]{filtro.pdf}
+}
+
+\begin{frame}[fragile,allowframebreaks]
+  \lstinputlisting[
+      language=tex,
+      basicstyle=\ttfamily,
+      firstline=20,
+    ]{filtro.tex}
+\end{frame}

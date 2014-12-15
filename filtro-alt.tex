@@ -1,0 +1,32 @@
+\documentclass{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.11}
+\usetikzlibrary{patterns, pgfplots.fillbetween}
+
+\begin{document}
+  \begin{tikzpicture}
+    \def\r{sqrt(2)}
+  \begin{axis}[view={0}{90}, mark=none, samples=50, samples y=50,
+    xmin=-2, xmax=2, ymin=-2, ymax=3]
+    \addplot3[
+      domain=-2:2, y domain=-2:3,
+      colormap={bw}{gray(0cm)=(0.8); gray(1cm)=(1)},
+      contour gnuplot={number=50,labels=false}]
+      {(x-1)^2+(y-x^2)^2};
+
+    \addplot[thick, black, domain=-2:2] (x,{4*x^2});
+    \addplot[thick, red, domain=-2:2, name path=A] (x,{4*x^2+1});
+    \addplot[thick, red, domain=-2:2, name path=B] (x,{4*x^2-1});
+
+    \addplot[pattern=dots, pattern color=red] fill between[of=A and B];
+    \addplot[pattern=dots, pattern color=blue, domain=0:360, thick,
+      samples=100] ({1+\r*cos(x)},{(1+\r*cos(x))^2+\r*sin(x)}) \closedcycle;
+    \draw[fill] (0,1) circle (0.05cm);
+  \end{axis}
+  \end{tikzpicture}
+\end{document}
