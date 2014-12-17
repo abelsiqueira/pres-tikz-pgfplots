@@ -2,7 +2,7 @@
 
 class Fractal
 
-  DEFAULT_N = 2**5+1
+  DEFAULT_N = 2**6+1
   DEFAULT_HS = 100
 
   attr_reader :n
@@ -16,7 +16,7 @@ class Fractal
   end
 
   def generate!
-    h = 1.0
+    h = 10.0
     sd = n-1
     while (sd > 1) do
       hf = sd/2.0

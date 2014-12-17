@@ -1,0 +1,21 @@
+\documentclass{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{tikz,pgfplots}
+\pgfplotsset{compat=1.11}
+
+\begin{document}
+  \begin{tikzpicture}
+    \begin{axis}[view={30}{70}, colorbar,
+        colormap={aname}{[0.1cm]
+          rgb255( 0.0cm)=(000,000,000);
+          rgb255( 1.0cm)=(000,000,255);
+          rgb255( 1.9cm)=(000,255,255);
+          rgb255( 2.0cm)=(000,100,000);
+          rgb255( 3.0cm)=(000,255,000);
+          rgb255( 5.0cm)=(255,255,255);
+        }]
+    \addplot3[surf] file {dados/data.dat};
+    \end{axis}
+  \end{tikzpicture}
+\end{document}
